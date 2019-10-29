@@ -7,11 +7,11 @@ class VAE(nn.Module):
         super(VAE, self).__init__()
         
         self.in_dim = in_dim
-        self.fc1 = nn.Linear(in_dim, 400)
-        self.fc21 = nn.Linear(400, 20)
-        self.fc22 = nn.Linear(400, 20)
-        self.fc3 = nn.Linear(20, 400)
-        self.fc4 = nn.Linear(400, in_dim)
+        self.fc1 = nn.Linear(in_dim, 500)
+        self.fc21 = nn.Linear(500, 50)
+        self.fc22 = nn.Linear(500, 50)
+        self.fc3 = nn.Linear(50, 500)
+        self.fc4 = nn.Linear(500, in_dim)
 
     def encode(self, x):
         h1 = F.relu(self.fc1(x))

@@ -56,16 +56,16 @@ def test(epoch, test_loader):
             if i == 0:
                 n = min(data.size(0), 8)
                 print("recon_batch.shape", recon_batch.shape)
-                comparison = torch.cat([data.view(n_test, 64, 75)[:n],
-                                      recon_batch.view(n_test, 64, 75)[:n]])
-                save_image(comparison.cpu(),
+                comparison = torch.cat([data.view(n_test, 1, 75, 64)[:n],
+                                      recon_batch.view(n_test, 1, 75, 64)[:n]])                
+                save_image( comparison.cpu(),
                          'results/reconstruction_' + str(epoch) + '.png', nrow=n)
 
     test_loss /= len(test_loader.dataset)
     print('====> Test set loss: {:.4f}'.format(test_loss))
 
 if __name__ == "__main__":
-    n_epoch = 1
+    n_epoch = 50
     log_interval = 100
     batch_size = 64
     m_path = ec.get_resource_path('', 'character_M.pkl')
@@ -84,7 +84,7 @@ if __name__ == "__main__":
         train(epoch, train_loader)
         test(epoch, test_loader)
         with torch.no_grad():
-            sample = torch.randn(64, 20).to(device)
+            sample = torch.randn(64, 50).to(device)
             sample = model.decode(sample).cpu()
-            save_image(sample.view(64, 64, 75),
+            save_image(sample.view(64, 1, 75, 64),
                        'results/sample_' + str(epoch) + '.png')

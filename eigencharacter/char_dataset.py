@@ -16,9 +16,9 @@ def load_char_data(M, ptrain, pdev, ptest, batch_size=64):
     np.random.shuffle(idx_list)
     n_sample = M.shape[1]
     # train_idxs = idx_list[:int(n_sample*ptrain)]
-    train_idxs = idx_list[:100]
+    train_idxs = idx_list[:3000]
     dev_idxs = idx_list[int(n_sample*ptrain):int(n_sample*(ptrain+pdev))]
-    test_idxs = idx_list[100:110]
+    test_idxs = idx_list[1000:1100]
     # test_idxs = idx_list[int(n_sample*(ptrain+pdev)):]
     data = CharDataset(M)
     train_loader = DataLoader(data, 
