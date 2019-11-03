@@ -3,15 +3,15 @@ import torch.nn as nn
 import torch.nn.functional as F
 
 class VAE(nn.Module):
-    def __init__(self, in_dim):
+    def __init__(self, in_dim, fc_node=500, vae_node=50):
         super(VAE, self).__init__()
         
         self.in_dim = in_dim
-        self.fc1 = nn.Linear(in_dim, 500)
-        self.fc21 = nn.Linear(500, 50)
-        self.fc22 = nn.Linear(500, 50)
-        self.fc3 = nn.Linear(50, 500)
-        self.fc4 = nn.Linear(500, in_dim)
+        self.fc1 = nn.Linear(in_dim, fc_node)
+        self.fc21 = nn.Linear(fc_node, vae_node)
+        self.fc22 = nn.Linear(fc_node, vae_node)
+        self.fc3 = nn.Linear(vae_node, fc_node)
+        self.fc4 = nn.Linear(fc_node, in_dim)
 
     def encode(self, x):
         h1 = F.relu(self.fc1(x))
