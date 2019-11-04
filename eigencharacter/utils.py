@@ -16,3 +16,8 @@ def get_cache_path(name, path):
 def get_resource_path(name, path):
     cache_dir = Path(__file__).parent / f"../resources/{name}"
     return cache_dir.joinpath(path).resolve()
+
+def get_exp_dir(cache_dir, exp_name):
+    cache_dir = get_cache_path(cache_dir, "")
+    exp_dir = cache_dir / exp_name
+    return exp_dir.resolve()
