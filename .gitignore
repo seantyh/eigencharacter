@@ -3,6 +3,7 @@
 # Edit at https://www.gitignore.io/?templates=python,visualstudiocode
 
 ### Project specific ###
+papers/
 resources/
 data/
 .ipynb_checkpoints/

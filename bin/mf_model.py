@@ -71,6 +71,7 @@ if __name__ == "__main__":
                         choices=['mean2form', 'form2mean'], default='mean2form')
     parser.add_argument("--n_epoch", type=int, help="number of epoch", default=10)
     parser.add_argument("--hidden_dim", type=int, default=100)
+    parser.add_argument("--lr", type=float, default=5e-5)
 
     args = parser.parse_args()
     model_dir = ec.get_cache_path("MF_Model", "")
@@ -128,7 +129,7 @@ if __name__ == "__main__":
         model = MF_Model(emb_dim, form_dim, args.hidden_dim).to(device)
     elif data_mode == FORM2MEAN:
         model = MF_Model(form_dim, emb_dim, args.hidden_dim).to(device)
-    optim = torch.optim.Adam(model.parameters(), lr=1e-4)
+    optim = torch.optim.Adam(model.parameters(), lr=args.lr)
     loss_fn = nn.MSELoss()
     writer = SummaryWriter(exp_dir)
 
