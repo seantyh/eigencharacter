@@ -3,11 +3,10 @@ import matplotlib.pyplot as plt
 from ..config import config
 from .draw_text import *
 
-def text2matrix(text):
+def im2matrix(im):
     spotlight_func = spotlight_rectangle
     step_func = step_char_wise
 
-    im = text2bitmap(text)
     xsteps, step_size = step_func(im)
     _, him = im.size
     nsteps = len(xsteps)
@@ -23,6 +22,12 @@ def text2matrix(text):
         # plt.show()
         X[:,col_i] = fim_vec
     return X, (im.size[0], step_size)
+
+def text2matrix(text):
+    im = text2bitmap(text)    
+    X, (h, w) = im2matrix(im)
+    return X, (h, w)
+
 
 
 

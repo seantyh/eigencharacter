@@ -24,11 +24,11 @@ def measure_text(text):
     txtw, txth = font.getsize(text)
     return txtw, txth
 
-def text2bitmap(text):    
+def text2bitmap(text, im_dim=None):    
     font_size = config.FONT_SIZE
     font = ImageFont.truetype(config.DEFAULT_FONT_PATH, font_size)    
 
-    im_dim = measure_text(text)
+    im_dim = measure_text(text) if not im_dim else im_dim
     # "L" for a 8bit bitmap    
     im = Image.new("L", im_dim)
     draw = ImageDraw.Draw(im)    
